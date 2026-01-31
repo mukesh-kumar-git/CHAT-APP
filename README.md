@@ -57,12 +57,19 @@ It focuses on core Django concepts.
 
 chatproject/
 |
+
 |-- accounts/          # User authentication
+
 |-- chat/              # Chat logic (models, views, urls)
+
 |-- templates/         # HTML templates
+
 |-- static/            # CSS and JavaScript files
+
 |-- db.sqlite3
+
 |-- manage.py
+
 |-- README.md
 
 ---
