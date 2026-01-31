@@ -1,0 +1,201 @@
+/* ================= GLOBAL ================= */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(to bottom, #ece5dd, #f0f0f0);
+}
+
+/* ================= PAGE LAYOUT ================= */
+.chat-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* ================= TOP BAR ================= */
+.top-bar {
+    background: linear-gradient(to right, #075e54, #128c7e);
+    color: white;
+    padding: 12px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* ================= PAGE TITLES ================= */
+.page-title {
+    margin: 12px 18px;
+    color: #333;
+}
+
+/* ================= USER LIST ================= */
+.user-list {
+    padding: 15px;
+}
+
+.user-item {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 12px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: black;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.user-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+}
+
+/* ================= CHAT BOX ================= */
+#chat-box {
+    flex: 1;
+    background: #e5ddd5;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+/* ================= MESSAGE BUBBLES ================= */
+.message {
+    max-width: 65%;
+    padding: 10px 12px;
+    margin: 8px 0;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    word-wrap: break-word;
+}
+
+/* My messages (RIGHT) */
+.me {
+    background: #dcf8c6;
+    margin-left: auto;
+    border-bottom-right-radius: 2px;
+}
+
+/* Other messages (LEFT) */
+.other {
+    background: white;
+    margin-right: auto;
+    border-bottom-left-radius: 2px;
+}
+
+/* ================= TIME ================= */
+.time {
+    font-size: 10px;
+    color: gray;
+    text-align: right;
+    margin-top: 4px;
+}
+
+/* ================= INPUT AREA ================= */
+.input-area {
+    display: flex;
+    padding: 10px;
+    background: #f0f0f0;
+    border-top: 1px solid #ddd;
+}
+
+.input-area input {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.input-area button {
+    padding: 10px 16px;
+    margin-left: 8px;
+    background: linear-gradient(to right, #075e54, #128c7e);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* ================= AUTH PAGES ================= */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #ece5dd, #d9dbd5);
+}
+
+.auth-box {
+    background: white;
+    padding: 25px;
+    width: 320px;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.auth-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #075e54;
+}
+
+.auth-box form p {
+    margin-bottom: 12px;
+}
+
+.auth-box input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 4px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.auth-box button {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(to right, #075e54, #128c7e);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 12px;
+    border-radius: 6px;
+}
+
+.auth-box .auth-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.auth-box .auth-link a {
+    color: #075e54;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* ================= ERRORS ================= */
+.auth-error {
+    color: red;
+    font-size: 13px;
+    margin-bottom: 10px;
+}

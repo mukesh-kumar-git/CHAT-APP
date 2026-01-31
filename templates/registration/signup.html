@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+    <link rel="stylesheet" href="/static/chat/style.css">
+</head>
+<body>
+
+<div class="auth-container">
+    <div class="auth-box">
+        <h2>Create Account</h2>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="auth-error">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Signup</button>
+        </form>
+
+        <div class="auth-link">
+            Already have an account?
+            <a href="{% url 'login' %}">Login</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

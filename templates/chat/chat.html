@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+    <link rel="stylesheet" href="/static/chat/style.css">
+</head>
+
+<body class="chat-page">
+
+<!-- TOP BAR -->
+<div class="top-bar">
+    <div>
+        <strong>{{ other_user.username }}</strong><br>
+        <small>online</small>
+    </div>
+
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button class="logout-btn">Logout</button>
+    </form>
+</div>
+
+<!-- CHAT BOX -->
+<div id="chat-box"></div>
+
+<!-- INPUT AREA -->
+<div class="input-area">
+    <input type="file" id="file-input">
+    <input type="text" id="message-input" placeholder="Type a message...">
+    <button onclick="sendMessage()">➤</button>
+</div>
+
+<script>
+const receiverId = "{{ other_user.id }}";
+
+/* Load messages */
+function loadMessages() {
+    fetch(`/messages/${receiverId}/`)
+        .then(res => res.json())
+        .then(data => {
+            const box = document.getElementById('chat-box');
+            box.innerHTML = '';
+
+            data.forEach(msg => {
+                const div = document.createElement('div');
+                div.classList.add('message');
+
+                if (msg.sender === "{{ request.user.username }}") {
+                    div.classList.add('me');
+                } else {
+                    div.classList.add('other');
+                }
+
+                div.innerHTML = `
+                    ${msg.text ? `<div>${msg.text}</div>` : ''}
+
+                    ${msg.file ? `
+                        <div>
+                            <a href="${msg.file}" target="_blank">📎 View file</a>
+                        </div>
+                    ` : ''}
+
+                    <div class="time">${msg.time}</div>
+                `;
+
+                box.appendChild(div);
+            });
+
+            box.scrollTop = box.scrollHeight;
+        });
+}
+
+/* Send message (text + file) */
+function sendMessage() {
+    const textInput = document.getElementById('message-input');
+    const fileInput = document.getElementById('file-input');
+
+    const text = textInput.value.trim();
+    const file = fileInput.files[0];
+
+    if (text === '' && !file) return;
+
+    const formData = new FormData();
+    formData.append('receiver', receiverId);
+    formData.append('message', text);
+
+    if (file) {
+        formData.append('file', file);
+    }
+
+    fetch('/send/', {
+        method: 'POST',
+        body: formData
+    });
+
+    textInput.value = '';
+    fileInput.value = '';
+}
+
+/* Poll every 3 seconds */
+setInterval(loadMessages, 3000);
+loadMessages();
+</script>
+
+</body>
+</html>

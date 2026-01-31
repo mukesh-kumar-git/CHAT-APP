@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Users</title>
+    <link rel="stylesheet" href="/static/chat/style.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+    <div>{{ request.user.username }}</div>
+
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button class="logout-btn">Logout</button>
+    </form>
+</div>
+
+<h2 class="page-title">Chats</h2>
+
+<!-- USER LIST -->
+<div class="user-list">
+    {% for user in users %}
+        <a href="{% url 'chat' user.id %}" class="user-item">
+            {{ user.username }}
+        </a>
+    {% empty %}
+        <p>No users found</p>
+    {% endfor %}
+</div>
+
+</body>
+</html>
